@@ -2,36 +2,47 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>Test</title>
-        <link rel="stylesheet" href="/styles/resets.css">
-        <link rel="stylesheet" href="/styles/base.css">
-        <link rel="stylesheet" href="/styles/header.css">
-        <link rel="stylesheet" href="/styles/form.css">
-        <link rel="stylesheet" href="/styles/footer.css">
+        <title>Sentiment Analyzer</title>
     </head>
 
     <body>
 
         <header>
-            <div class="">
-                Logo
-            </div>
-            <div class="">
-                navigation
+            <div>
+                Hello,
             </div>
         </header>
 
         <main>
             <section>
-                <form class="" onsubmit="return handleSubmit(event)">
-                    <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Name">
-                    <input type="submit" name="" value="submit" onclick="return handleSubmit(event)" onsubmit="return handleSubmit(event)">
+                <form class="" onsubmit="return Client.handleSubmit(event)">
+                    <input id="url" type="url" name="input" value="" placeholder="URL">
+                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                 </form>
             <section>
 
             <section>
                 <strong>Form Results:</strong>
                 <div id="results"></div>
+                <ul>
+                    <li>
+                        <h2>Agreement states:</h2>
+                        <p id="agreement"></p>
+                    </li>
+                    <li>
+                        <h2>Subjectivity states: </h2>
+                        <p id="subjectivity"></p>
+                    </li>
+                    <li>
+                        <h2>Confidence states:</h2>
+                        <p id="confidence"></p>
+                    </li>
+                    <li>
+                        <h2>Irony states: </h2>
+                        <p id="irony"></p>
+                    </li>
+                </ul>
+                <h2 id="error"></h2>
             </section>
         </main>
 
@@ -40,4 +51,13 @@
         </footer>
 
     </body>
+    <script>
+        // Check that service workers are supported
+        if ('serviceWorker' in navigator) {
+            // Use the window load event to keep the page load performant
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js');
+            });
+        }
+    </script>
 </html>
